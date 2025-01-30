@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class Form extends JFrame implements ActionListener {
 
@@ -9,6 +10,7 @@ public class Form extends JFrame implements ActionListener {
     private Container c;
     private JLabel title;
     private JButton clickBtn;
+    private JComboBox<String> dropdown;
 
     public Form() {
         setTitle("Genshin Clicker");
@@ -40,11 +42,17 @@ public class Form extends JFrame implements ActionListener {
 
         timeMsTextArea = new JTextArea();
         timeMsTextArea.setFont(new Font("Arial", Font.PLAIN, 15));
-        timeMsTextArea.setText("1000");
+        timeMsTextArea.setText("100");
         timeMsTextArea.setSize(100, 20);
         timeMsTextArea.setLocation(100, 100);
         timeMsTextArea.setLineWrap(false);
         c.add(timeMsTextArea);
+
+        dropdown = new JComboBox<>(new String[]{"F", "SPACE"});
+        dropdown.setFont(new Font("Arial", Font.PLAIN, 15));
+        dropdown.setSize(100, 20);
+        dropdown.setLocation(100, 130);
+        c.add(dropdown);
 
         setVisible(true);
     }
@@ -70,5 +78,13 @@ public class Form extends JFrame implements ActionListener {
             timeMsTextArea.setText("Not a number");
         }
         return 0;
+    }
+
+    public int getKeyEventForm() {
+        switch (dropdown.getSelectedIndex()) {
+            case 0: return KeyEvent.VK_F;
+            case 1: return KeyEvent.VK_SPACE;
+        }
+        throw new IllegalStateException("Ошибка списка " + dropdown.getSelectedIndex());
     }
 }

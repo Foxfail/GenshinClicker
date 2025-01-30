@@ -1,4 +1,3 @@
-
 public class ClickerThreadManager {
     private static ClickerThread clickerThread;
     public static boolean isClickerThreadStarted = false;
@@ -6,8 +5,9 @@ public class ClickerThreadManager {
 
     public static void startThread() {
         Integer timeFromForm = Main.form.getTimeFromForm();
+        int keyEventForm = Main.form.getKeyEventForm();
         if (timeFromForm != 0) {
-            clickerThread = new ClickerThread(timeFromForm);
+            clickerThread = new ClickerThread(timeFromForm, keyEventForm);
             clickerThread.start();
             isClickerThreadStarted = true;
         }

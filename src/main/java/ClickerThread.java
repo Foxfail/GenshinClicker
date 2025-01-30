@@ -3,10 +3,12 @@ import java.awt.event.KeyEvent;
 
 public class ClickerThread extends Thread{
 
-    Integer sleepMs = 1000;
+    Integer sleepMs;
+    int keyEventForm;
 
-    public ClickerThread(Integer sleepMs) {
+    public ClickerThread(Integer sleepMs, int keyEventForm) {
         this.sleepMs = sleepMs;
+        this.keyEventForm = keyEventForm;
     }
 
     @Override
@@ -15,9 +17,8 @@ public class ClickerThread extends Thread{
         while (true) {
             try {
                 Robot robot = new Robot();
-//                robot.keyPress(KeyEvent.VK_SPACE);
-                robot.keyPress(KeyEvent.VK_SPACE);
-                robot.keyRelease(KeyEvent.VK_SPACE);
+                robot.keyPress(keyEventForm);
+                robot.keyRelease(keyEventForm);
             } catch (AWTException e) {
                 e.printStackTrace();
             }
