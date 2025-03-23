@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * Класс является отдельным потоком в котором происходит нажатие клавиш
@@ -20,8 +21,18 @@ public class ClickerThread extends Thread{
         while (true) {
             try {
                 Robot robot = new Robot();
-                robot.keyPress(keyEventForm);
-                robot.keyRelease(keyEventForm);
+                //todo убрать этот if костыль, введённый для события мыши.
+                // Мышь и клавиатура идут под разными id и по разным методам Robot'a
+                // 1. Из вариантов думал насчёт общего класа InputEvent и тут использовать instanceof
+                // 2. Ввести свой класс/энум/адаптер для единого хранения и доступа к кнопкам, которые надо тыкать
+                // эти варианты мне не нравятся, поэтому костылю if'ом пока не придумаю что-то лучше
+                if(keyEventForm != 1) {
+                    robot.keyPress(keyEventForm);
+                    robot.keyRelease(keyEventForm);
+                } else {
+                    robot.mousePress(MouseEvent.BUTTON1_DOWN_MASK);
+                    robot.mouseRelease(MouseEvent.BUTTON1_DOWN_MASK);
+                }
             } catch (AWTException e) {
                 e.printStackTrace();
             }

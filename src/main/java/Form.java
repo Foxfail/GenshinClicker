@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 /**
  * Основная форма с парой методов с помощью которых можно получить настройки указанные на форме
@@ -51,7 +49,7 @@ public class Form extends JFrame implements ActionListener {
         timeMsTextArea.setLineWrap(false);
         c.add(timeMsTextArea);
 
-        dropdown = new JComboBox<>(new String[]{"F", "SPACE"});
+        dropdown = new JComboBox<>(new String[]{"F", "SPACE", "ЛКМ"});
         dropdown.setFont(new Font("Arial", Font.PLAIN, 15));
         dropdown.setSize(100, 20);
         dropdown.setLocation(100, 130);
@@ -87,6 +85,7 @@ public class Form extends JFrame implements ActionListener {
         switch (dropdown.getSelectedIndex()) {
             case 0: return KeyEvent.VK_F;
             case 1: return KeyEvent.VK_SPACE;
+            case 2: return MouseEvent.BUTTON1;
         }
         throw new IllegalStateException("Ошибка списка " + dropdown.getSelectedIndex());
     }
