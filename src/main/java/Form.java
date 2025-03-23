@@ -1,3 +1,5 @@
+import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,7 +13,7 @@ public class Form extends JFrame implements ActionListener {
     private Container c;
     private JLabel title;
     private JButton clickBtn;
-    private JComboBox<String> dropdown;
+    private JComboBox<String> dropdownMainButton;
 
     public Form() {
         setTitle("Genshin Clicker");
@@ -22,10 +24,10 @@ public class Form extends JFrame implements ActionListener {
         c = getContentPane();
         c.setLayout(null);
 
-        title = new JLabel("F12 = start/stop");
+        title = new JLabel("F9 or F12 = start/stop");
         title.setFont(new Font("Arial", Font.PLAIN, 12));
         title.setSize(300, 30);
-        title.setLocation(5, 3);
+        title.setLocation(60, 5);
         c.add(title);
 
         clickBtn = new JButton("ThreadSwitch");
@@ -49,11 +51,11 @@ public class Form extends JFrame implements ActionListener {
         timeMsTextArea.setLineWrap(false);
         c.add(timeMsTextArea);
 
-        dropdown = new JComboBox<>(new String[]{"F", "SPACE", "ЛКМ"});
-        dropdown.setFont(new Font("Arial", Font.PLAIN, 15));
-        dropdown.setSize(100, 20);
-        dropdown.setLocation(100, 130);
-        c.add(dropdown);
+        dropdownMainButton = new JComboBox<>(new String[]{"F", "SPACE", "ЛКМ"});
+        dropdownMainButton.setFont(new Font("Arial", Font.PLAIN, 15));
+        dropdownMainButton.setSize(100, 20);
+        dropdownMainButton.setLocation(100, 130);
+        c.add(dropdownMainButton);
 
         setVisible(true);
     }
@@ -61,7 +63,7 @@ public class Form extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        if (clickBtn.equals(source)) {
+        if (source.equals(clickBtn)) {
             if (ClickerThreadManager.isClickerThreadStarted) {
                 ClickerThreadManager.stopThread();
             } else {
@@ -81,12 +83,12 @@ public class Form extends JFrame implements ActionListener {
         return 0;
     }
 
-    public int getKeyEventForm() {
-        switch (dropdown.getSelectedIndex()) {
+    public int getKeyEventFromForm() {
+        switch (dropdownMainButton.getSelectedIndex()) {
             case 0: return KeyEvent.VK_F;
             case 1: return KeyEvent.VK_SPACE;
             case 2: return MouseEvent.BUTTON1;
         }
-        throw new IllegalStateException("Ошибка списка " + dropdown.getSelectedIndex());
+        throw new IllegalStateException("Ошибка списка " + dropdownMainButton.getSelectedIndex());
     }
 }

@@ -8,7 +8,7 @@ public class ClickerThreadManager {
 
     public static void startThread() {
         Integer timeFromForm = Main.form.getTimeFromForm();
-        int keyEventForm = Main.form.getKeyEventForm();
+        int keyEventForm = Main.form.getKeyEventFromForm();
         if (timeFromForm != 0) {
             clickerThread = new ClickerThread(timeFromForm, keyEventForm);
             clickerThread.start();
