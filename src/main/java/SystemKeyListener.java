@@ -10,7 +10,7 @@ public class SystemKeyListener implements NativeKeyListener {
     @Override
     public void nativeKeyPressed(NativeKeyEvent nativeEvent) {
         NativeKeyListener.super.nativeKeyPressed(nativeEvent);
-        if (nativeEvent.getKeyCode() == 88) {
+        if (nativeEvent.getKeyCode() == NativeKeyEvent.VC_F12) {
             if (ClickerThreadManager.isClickerThreadStarted) {
                 ClickerThreadManager.stopThread();
             } else {
