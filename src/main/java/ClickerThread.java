@@ -1,6 +1,9 @@
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
+/**
+ * Класс является отдельным потоком в котором происходит нажатие клавиш
+ * согласно переданным в конструктор параметрам
+ */
 public class ClickerThread extends Thread{
 
     Integer sleepMs;

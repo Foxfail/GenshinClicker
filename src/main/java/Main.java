@@ -1,6 +1,10 @@
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 
+/**
+ * Точка входа.
+ * Запускает форму и слушатель клавиатуры
+ */
 public class Main {
 
     public static Form form = new Form();

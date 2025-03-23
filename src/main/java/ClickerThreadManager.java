@@ -1,3 +1,6 @@
+/**
+ * Класс управляет запуском, остановкой и хранит состояние потока ClickerThread
+ */
 public class ClickerThreadManager {
     private static ClickerThread clickerThread;
     public static boolean isClickerThreadStarted = false;
